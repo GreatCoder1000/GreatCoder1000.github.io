@@ -1,0 +1,85 @@
+/* General Styles */
+
+body {font-family:arial;background-color:#aaf}
+.nav-prevBut {float:left}
+.nav-prevBut::before {content:"<"}
+.nav-nextnextBut {float:right}
+.nav-nextBut {float:right !important}
+/* .nav-nextBut::before {content:"Next: "} */
+.nav-nextBut::after  {content:">"}
+.nav-nextnextBut::after  {content:">>"}
+.nav-nextnextBut::before {content: "\A";white-space: pre}
+.navBut0:hover {background-color:#fb7}
+.navBut0:active {background-color:yellow}
+/* .pt-item {border: 1px solid black; padding: 15px; padding-left: 10px; padding-right: 10px;} */
+.pt-item {border: 1px solid black; font-size: 6px; text-align: center; width: 40px; height: 40px;}
+.pt-element-name {text-align: center}
+.pt-element-sym {text-align: center; font-size: 10px !important; font-weight: bolder;}
+.pt-atomic-number {text-align: left}
+.pt-atomic-mass {text-align: right}
+.pt-alkali-metal {background-color:#f88}
+.pt-alkaline-earth-metal {background-color:#fb8}
+.pt-transition-metal {background-color:#ff8}
+.pt-other-metal {background-color:#8f8}
+.pt-semi-metal {background-color:#8ff}
+.pt-non-metal {background-color:#33f}
+.pt-halogen {background-color:#a8f}
+.pt-noble-gas {background-color:#80f}
+.pt-lanthanide {background-color:#c3f}
+.pt-actinide {background-color:#f3f}
+.pt-unknown {background-color:#ccc; border: 1px dotted black !important}
+/* .pt-item:hover {background-color:#333;color:#fff} */
+.pt-unknown:hover {cursor:help}
+.pt-valence-electrons {display:none}
+/* The Modal (background) */
+.artcl-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .artcl-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .artcl-close:hover,
+  .artcl-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+
+  .artcl-mm-img-container {
+    height: 100px;
+    width: 200px;
+  }
+
+.no-bullet-ul {list-style-type:none}
+.element-appearance-li::before {content: 'Appearance: '}
+.element-atomic-number-li::before {content: 'Atomic Number (Z): '}
+.element-standard-aw-li::before {content: 'Atomic Mass: '}
+.element-group-li::before {content: 'Group: Group '}
+.element-period-li::before {content: 'Period: Period '}
+.element-block-li::before {content: 'Block: '}
+.element-ec-li::before {content: 'Electron Configuration: '}
