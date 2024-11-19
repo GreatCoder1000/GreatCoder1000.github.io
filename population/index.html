@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Population</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('earth.jfif') no-repeat center center fixed #223;
+            background-size: cover;
+            margin: 0;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+        }
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+        }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-item {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+        .counter-container {
+            background-color: rgba(32, 35, 42, 0.8);
+            padding: 20px;
+            margin: 10px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        .counter {
+            font-size: 2.5em;
+            color: #61dafb;
+        }
+        .label {
+            font-size: 1.5em;
+            color: #61dafb;
+        }
+        .live {
+            color: #ff0000;
+            font-weight: bold;
+        }
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .carousel-controls button {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: #fff;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel" id="carousel-w">
+        <div class="carousel-inner">
+            <div class="carousel-item carousel-item-w">
+                <div class="counter-container">
+                    <div class="label"><span class="live">🔴LIVE🔴</span> World Population:</div>
+                    <h1 class="counter" id="counter-01">retrieving data...</h1>
+                </div>
+            </div>
+            <div class="carousel-item carousel-item-w">
+                <div class="counter-container">
+                    <div class="label">Births today:</div>
+                    <h1 class="counter" id="counter-03">retrieving data...</h1>
+                </div>
+            </div>
+            <div class="carousel-item carousel-item-w">
+                <div class="counter-container">
+                    <div class="label">Deaths today:</div>
+                    <h1 class="counter" id="counter-04">retrieving data...</h1>
+                </div>
+            </div>
+            <div class="carousel-item carousel-item-w">
+                <div class="counter-container">
+                    <div class="label">Net Population Growth Today:</div>
+                    <h1 class="counter" id="counter-05">retrieving data...</h1>
+                </div>
+            </div>
+            <div class="carousel-item carousel-item-w">
+                <div class="counter-container">
+                    <div class="label">Births this year:</div>
+                    <h1 class="counter" id="counter-06">retrieving data...</h1>
+                </div>
+            </div>
+            <div class="carousel-item carousel-item-w">
+                <div class="counter-container">
+                    <div class="label">Deaths this year:</div>
+                    <h1 class="counter" id="counter-07">retrieving data...</h1>
+                </div>
+            </div>
+            <div class="carousel-item carousel-item-w">
+                <div class="counter-container">
+                    <div class="label">Net Population Growth this year:</div>
+                    <h1 class="counter" id="counter-08">retrieving data...</h1>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-controls">
+            <button id="prevw">❮</button>
+            <button id="nextw">❯</button>
+        </div>
+    </div>
+    <div class="carousel" id="carousel-c">
+        <div class="carousel-inner">
+            <div class="carousel-item carousel-item-c">
+                <div class="counter-container">
+                    <div class="label"><span class="live">🔴LIVE🔴</span> India:</div>
+                    <h1 class="counter" id="ccounter-india">retrieving data...</h1>
+                </div>
+            </div>
+            <div class="carousel-item carousel-item-c">
+                <div class="counter-container">
+                    <div class="label"><span class="live">🔴LIVE🔴</span> China:</div>
+                    <h1 class="counter" id="ccounter-china">retrieving data...</h1>
+                </div>
+            </div>
+            <div class="carousel-item carousel-item-c">
+                <div class="counter-container">
+                    <div class="label"><span class="live">🔴LIVE🔴</span> United States:</div>
+                    <h1 class="counter" id="ccounter-usa">retrieving data...</h1>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-controls">
+            <button id="prevc">❮</button>
+            <button id="nextc">❯</button>
+        </div>
+    </div>
+    <script>
+        function daysSinceNewYear(date) {
+            const startOfYear = new Date(date.getFullYear(), 0, 1);
+            const diffInMilliseconds = date - startOfYear;
+            const millisecondsInOneDay = 1000 * 60 * 60 * 24;
+            return Math.ceil(diffInMilliseconds / millisecondsInOneDay);
+        }
+
+        function setCounter(counter, value) {
+            document.getElementById(counter).innerText = value;
+        }
+
+        function updateCounter() {
+            let now = new Date();
+            let millisecondsSince1970 = Date.now();
+            let dayOfYear = daysSinceNewYear(now) - 1;
+            let daysSince2000 = millisecondsSince1970 / 86400000 - 10957;
+            let yearCode = (daysSince2000 / 365.25) + 2000;
+            let population = 6316690765 + (Math.round(201410 * daysSince2000));
+            let birthsPerDay = 362759;
+            let deathsPerDay = 170934;
+            let currentHour = now.getHours();
+            let currentMinute = now.getMinutes();
+            let currentSecond = now.getSeconds();
+            let currentMillisecond = now.getMilliseconds();
+            let timeOfDay = ((currentHour * 3600000) + (currentMinute * 60000) + (currentSecond * 1000) + currentMillisecond) / 86400000;
+            let birthsToday = Math.round(timeOfDay * birthsPerDay);
+            let deathsToday = Math.round(timeOfDay * deathsPerDay);
+            let netGrowthToday = birthsToday - deathsToday;
+            let datetimeOfYear = dayOfYear + timeOfDay;
+            let birthsThisYear = Math.round(datetimeOfYear * birthsPerDay);
+            let deathsThisYear = Math.round(datetimeOfYear * deathsPerDay);
+            let netGrowthThisYear = birthsThisYear - deathsThisYear;
+            population = 8188828110 + Math.round((daysSince2000 - 9088) * (birthsPerDay)) - Math.round((daysSince2000 - 9088) * (deathsPerDay));
+            let indiaPopulation = Math.round((12819315.299 * yearCode) - 24501716796);
+            let chinaPopulation = Math.round((-3051427.837 * yearCode) + 7596863466);
+            let usaPopulation = Math.round((1920451.9 * yearCode) - 3542553775.85);
+            setCounter('counter-01', population.toLocaleString());
+            setCounter('counter-03', birthsToday.toLocaleString());
+            setCounter('counter-04', deathsToday.toLocaleString());
+            setCounter('counter-05', netGrowthToday.toLocaleString());
+            setCounter('counter-06', birthsThisYear.toLocaleString());
+            setCounter('counter-07', deathsThisYear.toLocaleString());
+            setCounter('counter-08', netGrowthThisYear.toLocaleString());
+            setCounter('ccounter-india', indiaPopulation.toLocaleString());
+            setCounter('ccounter-china', chinaPopulation.toLocaleString());
+            setCounter('ccounter-usa', usaPopulation.toLocaleString());
+        }
+
+        updateCounter();
+        setInterval(updateCounter, 100);
+
+        const carouselw = document.querySelector('#carousel-w .carousel-inner');
+        const carouselc = document.querySelector('#carousel-c .carousel-inner');
+        const itemsw = document.querySelectorAll('.carousel-item-w');
+        const itemsc = document.querySelectorAll('.carousel-item-c');
+        const prevButtonw = document.getElementById('prevw');
+        const nextButtonw = document.getElementById('nextw');
+        const prevButtonc = document.getElementById('prevc');
+        const nextButtonc = document.getElementById('nextc');
+        let currentIndexw = 0;
+        let currentIndexc = 0;
+
+        function showItemw(index) {
+            const offset = -index * 100;
+            carouselw.style.transform = `translateX(${offset}%)`;
+        }
+
+        function showItemc(index) {
+            const offset = -index * 100;
+            carouselc.style.transform = `translateX(${offset}%)`;
+        }
+
+        prevButtonw.addEventListener('click', () => {
+            currentIndexw = (currentIndexw > 0) ? currentIndexw - 1 : itemsw.length - 1;
+            showItemw(currentIndexw);
+        });
+
+        nextButtonw.addEventListener('click', () => {
+            currentIndexw = (currentIndexw < itemsw.length - 1) ? currentIndexw + 1 : 0;
+            showItemw(currentIndexw);
+        });
+
+        prevButtonc.addEventListener('click', () => {
+            currentIndexc = (currentIndexc > 0) ? currentIndexc - 1 : itemsc.length - 1;
+            showItemc(currentIndexc);
+        });
+
+        nextButtonc.addEventListener('click', () => {
+            currentIndexc = (currentIndexc < itemsc.length - 1) ? currentIndexc + 1 : 0;
+            showItemc(currentIndexc);
+        });
+    </script>
+    <noscript>
+        Your browser has JavaScript disabled. Go to browser settings and enable it to use this application.
+    </noscript>
+</body>
+</html>
