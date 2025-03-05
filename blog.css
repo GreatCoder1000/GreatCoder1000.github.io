@@ -1,0 +1,13 @@
+/* General Styles */
+
+body {font-family:arial;background-color:#aaf}
+.nav-prevBut {float:left}
+.nav-prevBut::before {content:"<"}
+.nav-nextnextBut {float:right}
+.nav-nextBut {float:right !important}
+/* .nav-nextBut::before {content:"Next: "} */
+.nav-nextBut::after  {content:">"}
+.nav-nextnextBut::after  {content:">>"}
+.nav-nextnextBut::before {content: "\A";white-space: pre}
+.navBut0:hover {background-color:#fb7}
+.navBut0:active {background-color:yellow}
